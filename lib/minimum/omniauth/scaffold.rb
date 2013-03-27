@@ -98,6 +98,10 @@ module Minimum
         content += "config/settings/*.local.yml\n"
         content += "config/environments/*.local.yml\n"
         append_file( ".gitignore", content.force_encoding('ASCII-8BIT') )
+
+        # ----- controllers ----- #
+        content = "ruby '2.0.0'\n"
+        insert_into_file( "Gemfile", content.force_encoding('ASCII-8BIT'), after: "source 'https://rubygems.org'\n" )
       end
     end
   end
