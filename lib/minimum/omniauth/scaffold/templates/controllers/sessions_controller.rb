@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
     redirect_to :root, notice: "ログアウトしました。"
   end
 
+  # ログインエラー
   def failure
     render text: "<span style='color: red;'>Auth Failure</span>"
   end

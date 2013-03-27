@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["shu0115"]
   spec.email         = ["s.matsumoto0115@gmail.com"]
   spec.description   = %q{Scaffold for OmniAuth}
-  spec.summary       = %q{Scaffold for OmniAuth}
+  spec.summary       = %q{Minimum OmniAuth Scaffold}
   spec.homepage      = "https://github.com/shu0115/minimum-omniauth-scaffold"
   spec.license       = "MIT"
 
@@ -21,11 +21,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
 
-  gem.add_dependency 'rails_config'
-  gem.add_dependency 'omniauth-twitter'
-  gem.add_dependency 'omniauth-facebook'
-  gem.add_dependency 'omniauth-github'
-  gem.add_dependency 'tapp'
-  gem.add_dependency 'awesome_print'
+  spec.add_dependency "rails_config"
+  spec.add_dependency "omniauth-twitter"
+  spec.add_dependency "omniauth-facebook"
+  spec.add_dependency "omniauth-github"
+  spec.add_dependency "tapp"
+  spec.add_dependency "awesome_print"
 end
 
