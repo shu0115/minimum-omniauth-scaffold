@@ -1,0 +1,129 @@
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a {
+  color: #000;
+  &:visited {
+    color: #666;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #000;
+  }
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+/* Add minimum-omniauth-scaffold */
+body {
+  font-family: Courier, monospace, verdana, arial, helvetica, sans-serif;
+}
+
+textarea {
+  font-family: Courier;
+  font-size: 12px;
+}
+
+pre {
+  font-family: Courier;
+  font-size: 12px;
+  background-color: #eee;
+  padding: 5px;
+}
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 6px 20px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999;
+}
+
+.backcolor_white {
+  background-color: #fff;
+}
+
+.padding_top10 {
+  padding: 10px 0px 0px 0px;
+}
+
+.margin_minus2 {
+  margin: -2px 0px -2px 0px;
+}
+
+.margin_top50 {
+  margin: 50px 0px 0px 0px;
+}
+
+table, tr, th, td {
+  border: 1px solid #aaa;
+  padding: 5px;
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+
+.search table, .search tr, .search td {
+  border: 0px solid #aaa;
+  padding: 0px;
+}
+
+th {
+  white-space: nowrap;
+}

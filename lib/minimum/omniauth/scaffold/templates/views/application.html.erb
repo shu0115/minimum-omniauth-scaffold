@@ -1,0 +1,28 @@
+<%= link_to Settings.app_name, :root %>
+
+<% if current_user.present? %>
+  <%# ログイン済み %>
+  <%= render partial: '/layouts/user_icon', locals: { user: current_user, size: "18x18", klass: "margin_minus2" } %>
+  <%= link_to( "Top", root_path ) %>
+  <%= link_to( "Logout", logout_path ) %>
+<% else %>
+  <%# 未ログイン %>
+  Login:
+  <%= link_to "Twitter", "/auth/twitter" # TODO: _path表記へ修正 %>
+  <%= link_to "Facebook", "/auth/facebook" %>
+  <%= link_to "GitHub", "/auth/gitHub" %>
+<% end %>
+
+<%# 通知／エラーメッセージ %>
+<%= simple_format( flash[:notice], style: "color: green;" ) if flash[:notice].present? %>
+<%= simple_format( flash[:alert], style: "color: red;" ) if flash[:alert].present? %>
+
+<%= yield %>
+
+<br /><br />
+
+<center>
+  Developed by <a href="https://twitter.com/<%= Settings.programmer_twitter_id %>/" target="_blank">@<%= Settings.programmer_twitter_id %></a>,
+  Designed by <a href="https://twitter.com/<%= Settings.designer_twitter_id %>/" target="_blank">@<%= Settings.designer_twitter_id %></a>,
+  Licence by <a href="https://creativecommons.org/licenses/by-nc-sa/2.1/jp/" target="_blank">CC BY-NC-SA 2.1</a>
+</center>

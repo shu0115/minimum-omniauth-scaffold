@@ -1,0 +1,5 @@
+# https://github.com/amatsuda/i18n_generators
+ja:
+  activerecord:
+    models:
+    attributes:

@@ -1,6 +1,6 @@
 # Minimum::Omniauth::Scaffold
 
-TODO: Write a gem description
+For Ruby2.0 and Rails4.0
 
 ## Installation
 
