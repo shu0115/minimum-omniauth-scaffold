@@ -14,19 +14,20 @@ module Minimum
     module Scaffold
       class ScaffoldGenerator < ::Rails::Generators::Base
         def generate_scaffold
-          gem_path = source_root File.expand_path("../scaffold/templates", __FILE__)
+          template_path = source_root File.expand_path( "templates", __FILE__ )
+          puts "[ ---------- template_path ---------- ]" ; template_path.tapp ;
           app_name = Rails.application.class.name.split('::').first
 
           # ----- rails_config ----- #
-          copy_file( "templates/rails_config/rails_config.rb", "config/initializers/rails_config.rb" )
-          copy_file( "templates/rails_config/settings.yml", "config/settings.yml" )
-          copy_file( "templates/rails_config/settings.local.yml", "config/settings.local.yml" )
-          copy_file( "templates/rails_config/development.yml", "config/settings/development.yml" )
-          copy_file( "templates/rails_config/production.yml", "config/settings/production.yml" )
-          copy_file( "templates/rails_config/test.yml", "config/settings/test.yml" )
+          copy_file( "#{template_path}/rails_config/rails_config.rb", "config/initializers/rails_config.rb" )
+          copy_file( "#{template_path}/rails_config/settings.yml", "config/settings.yml" )
+          copy_file( "#{template_path}/rails_config/settings.local.yml", "config/settings.local.yml" )
+          copy_file( "#{template_path}/rails_config/development.yml", "config/settings/development.yml" )
+          copy_file( "#{template_path}/rails_config/production.yml", "config/settings/production.yml" )
+          copy_file( "#{template_path}/rails_config/test.yml", "config/settings/test.yml" )
 
           # ----- omniauth ----- #
-          copy_file( "templates/omniauth.rb", "config/initializers/omniauth.rb" )
+          copy_file( "#{template_path}/initializers/omniauth.rb", "config/initializers/omniauth.rb" )
 
           # ----- routes.rb ----- #
           content = "\n  # For OmniAuth\n"
@@ -59,39 +60,39 @@ module Minimum
           insert_into_file( "config/environments/development.rb", "  config.assets.debug = false\n", after: "config.assets.debug = true\n" )  # false設定追加
 
           # ----- ja.yml ----- #
-          copy_file( "templates/ja.yml", "config/locales/ja.yml" )
-          copy_file( "templates/translation_ja.yml", "config/locales/translation_ja.yml" )
+          copy_file( "#{template_path}/locales/ja.yml", "config/locales/ja.yml" )
+          copy_file( "#{template_path}/locales/translation_ja.yml", "config/locales/translation_ja.yml" )
 
           # ----- create_users.rb ----- #
-          copy_file( "templates/create_users.rb", "db/migrate/20000101000000_create_users.rb" )
+          copy_file( "#{template_path}/migrate/create_users.rb", "db/migrate/20000101000000_create_users.rb" )
 
           # ----- models ----- #
-          copy_file( "templates/user.rb", "app/models/user.rb" )
+          copy_file( "#{template_path}/models/user.rb", "app/models/user.rb" )
 
           # ----- controllers ----- #
-          content = File.read( "#{@@gem_path}/templates/application_controller.rb", encoding: Encoding::UTF_8 )
+          content = File.read( "#{template_path}/controllers/application_controller.rb", encoding: Encoding::UTF_8 )
           gsub_file "app/controllers/application_controller.rb", /(class ApplicationController < ActionController::Base\n  protect_from_forgery\nend\n)+/, content.force_encoding('ASCII-8BIT')
-          copy_file( "templates/sessions_controller.rb", "app/controllers/sessions_controller.rb" )
-          copy_file( "templates/top_controller.rb", "app/controllers/top_controller.rb" )
+          copy_file( "#{template_path}/controllers/sessions_controller.rb", "app/controllers/sessions_controller.rb" )
+          copy_file( "#{template_path}/controllers/top_controller.rb", "app/controllers/top_controller.rb" )
 
           # ----- views ----- #
-          content = File.read( "#{@@gem_path}/templates/application.html.erb", encoding: Encoding::UTF_8 )
+          content = File.read( "#{template_path}/views/application.html.erb", encoding: Encoding::UTF_8 )
           gsub_file "app/views/layouts/application.html.erb", /(<%= yield %>)+/, content.force_encoding('ASCII-8BIT')
           gsub_file "app/views/layouts/application.html.erb", Regexp.new("<title>#{app_name}</title>"), "<title><%= Settings.app_name %></title>"
-          copy_file( "templates/_user_icon.html.erb", "app/views/layouts/_user_icon.html.erb" )
-          copy_file( "templates/index.html.erb", "app/views/top/index.html.erb" )
+          copy_file( "#{template_path}/views/_user_icon.html.erb", "app/views/layouts/_user_icon.html.erb" )
+          copy_file( "#{template_path}/views/index.html.erb", "app/views/top/index.html.erb" )
 
           # ----- assets ----- #
-          copy_file( "templates/base.css.scss", "app/assets/stylesheets/base.css.scss" )
-          copy_file( "templates/scaffolds.css.scss", "app/assets/stylesheets/scaffolds.css.scss" )
-          copy_file( "templates/z_style.css.scss", "app/assets/stylesheets/z_style.css.scss" )
+#          copy_file( "#{template_path}/base.css.scss", "app/assets/stylesheets/base.css.scss" )
+          copy_file( "#{template_path}/stylesheets/scaffolds.css.scss", "app/assets/stylesheets/scaffolds.css.scss" )
+#          copy_file( "#{template_path}/z_style.css.scss", "app/assets/stylesheets/z_style.css.scss" )
 
           # ----- public ----- #
 #          remove_file( 'public/index.html' )
 
           # ----- README ----- #
           remove_file( 'README.rdoc' )
-          copy_file( "templates/README.md", "README.md" )
+          copy_file( "#{template_path}/README.md", "README.md" )
 
           # ----- .gitignore ----- #
           content = "\n# Add\n"
