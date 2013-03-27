@@ -31,12 +31,11 @@ module Minimum
         # ----- routes.rb ----- #
         content = "\n  # For OmniAuth\n"
         content += "  get \"/auth/:provider/callback\" => \"sessions#callback\"\n"
-        content += "  get \"/auth/failure\" => \"sessions#failure\"\n"
-        content += "  get \"/logout\" => \"sessions#destroy\", :as => :logout\n"
+        content += "  get \"/auth/failure\"            => \"sessions#failure\"\n"
+        content += "  get \"/logout\"                  => \"sessions#destroy\", as: :logout\n"
         content += "\n"
-        insert_into_file( "config/routes.rb", content.force_encoding('ASCII-8BIT'), after: "Rails4sample::Application.routes.draw do\n" )
-        insert_into_file( "config/routes.rb", "  root to: 'top#index'\n", after: "Rails4sample::Application.routes.draw do\n" )
-#        insert_into_file( "config/routes.rb", "  match ':controller(/:action(/:id))(.:format)'\n", after: "# match ':controller(/:action(/:id))(.:format)'\n" )
+        insert_into_file( "config/routes.rb", content.force_encoding('ASCII-8BIT'), after: "Application.routes.draw do\n" )
+        insert_into_file( "config/routes.rb", "  root to: 'top#index'\n", after: "Application.routes.draw do\n" )
 
         # ----- application.rb ----- #
         content = "    config.time_zone = 'Tokyo'\n"
@@ -53,9 +52,9 @@ module Minimum
         insert_into_file( "config/environments/production.rb", "  config.force_ssl = true\n", after: "# config.force_ssl = true\n" )  # 強制SSL設定
 
         # ----- development.rb ----- #
-        content = "\n  # For LogRotate\n"
-        content += "  config.logger = Logger.new( 'log/development.log', 3, 10*1024*1024 )  # 10MB * 3\n"
-        insert_into_file( "config/environments/development.rb", content.force_encoding('ASCII-8BIT'), after: "config.assets.debug = true\n" )
+#        content = "\n  # For LogRotate\n"
+#        content += "  config.logger = Logger.new( 'log/development.log', 3, 10*1024*1024 )  # 10MB * 3\n"
+#        insert_into_file( "config/environments/development.rb", content.force_encoding('ASCII-8BIT'), after: "config.assets.debug = true\n" )
         gsub_file "config/environments/development.rb", /(config.assets.debug = true)+/, "# config.assets.debug = true"  # コメントアウト追加
         insert_into_file( "config/environments/development.rb", "  config.assets.debug = false\n", after: "config.assets.debug = true\n" )  # false設定追加
 
@@ -71,7 +70,6 @@ module Minimum
 
         # ----- controllers ----- #
         content = File.read( "#{@@template_path}/controllers/application_controller.rb", encoding: Encoding::UTF_8 )
-#        gsub_file "app/controllers/application_controller.rb", /(class ApplicationController < ActionController::Base\n  protect_from_forgery\nend\n)+/, content.force_encoding('ASCII-8BIT')
         insert_into_file( "app/controllers/application_controller.rb", content.force_encoding('ASCII-8BIT'), after: "protect_from_forgery with: :exception\n" )
         copy_file( "#{@@template_path}/controllers/sessions_controller.rb", "app/controllers/sessions_controller.rb" )
         copy_file( "#{@@template_path}/controllers/top_controller.rb", "app/controllers/top_controller.rb" )
@@ -84,12 +82,7 @@ module Minimum
         copy_file( "#{@@template_path}/views/index.html.erb", "app/views/top/index.html.erb" )
 
         # ----- assets ----- #
-#          copy_file( "#{@@template_path}/base.css.scss", "app/assets/stylesheets/base.css.scss" )
         copy_file( "#{@@template_path}/stylesheets/scaffolds.css.scss", "app/assets/stylesheets/scaffolds.css.scss" )
-#          copy_file( "#{@@template_path}/z_style.css.scss", "app/assets/stylesheets/z_style.css.scss" )
-
-        # ----- public ----- #
-#          remove_file( 'public/index.html' )
 
         # ----- README ----- #
         remove_file( 'README.rdoc' )
