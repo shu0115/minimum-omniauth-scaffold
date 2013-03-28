@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_filter :authenticate
+
   # ログイン
   def callback
     auth = request.env["omniauth.auth"]

@@ -11,3 +11,6 @@ programmer_twitter_id: "PROGRAMMER_TWITTER_ID"
 
 # デザイナーTwitterID
 designer_twitter_id: "DESIGNER_TWITTER_ID"
+
+# 曜日
+weekday: ["日", "月", "火", "水", "木", "金", "土"]
