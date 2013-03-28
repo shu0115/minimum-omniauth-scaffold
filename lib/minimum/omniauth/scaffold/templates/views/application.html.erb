@@ -1,6 +1,6 @@
 <%= link_to Settings.app_name, :root %>
 
-<% if current_user.present? %>
+<% if user_signed_in? %>
   <%# ログイン済み %>
   <%= render partial: '/layouts/user_icon', locals: { user: current_user, size: "18x18", klass: "margin_minus2" } %>
   <%= link_to( "Top", root_path ) %>
