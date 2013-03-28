@@ -61,6 +61,10 @@ rails g minimum:omniauth:scaffold
 ----------
 ```
 
+```
+rake db:migrate
+```
+
 ## Contributing
 
 1. Fork it
