@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-#  attr_accessible :provider, :uid, :name, :nickname, :image, :email, :location, :token, :secret
-
   # auth情報更新
   def auth_update( auth )
     if auth["provider"] == "facebook"
@@ -9,12 +7,13 @@ class User < ActiveRecord::Base
       image_path = auth["info"]["image"]
     end
 
-    if self.name != auth["info"]["name"] or self.nickname != auth["info"]["nickname"] or self.image != image_path or self.email != auth["info"]["email"] or self.location != auth["info"]["location"]
+    if self.name != auth["info"]["name"] or self.nickname != auth["info"]["nickname"] or self.image != image_path or self.email != auth["info"]["email"]
       self.name     = auth["info"]["name"]
       self.nickname = auth["info"]["nickname"]
       self.image    = image_path
       self.email    = auth["info"]["email"]
-      self.location = auth["info"]["location"]
+      self.gender   = auth["extra"]["raw_info"]["gender"]
+      self.location = auth["info"]["location"] || auth["extra"]["raw_info"]["location"]
       self.save!
     end
   end
@@ -38,6 +37,11 @@ class User < ActiveRecord::Base
     if auth["credentials"].present?
       user.token  = auth['credentials']['token']
       user.secret = auth['credentials']['secret']
+    end
+
+    if auth["extra"].present? and auth["extra"]["raw_info"].present?
+      user.gender   = auth["extra"]["raw_info"]["gender"]
+      user.location = auth["extra"]["raw_info"]["location"] if user.location.blank?
     end
 
     user.save!
