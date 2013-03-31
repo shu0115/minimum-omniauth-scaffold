@@ -1,7 +1,7 @@
 # Provider Page
-twitter_page: "https://twitter.com/"
+twitter_page:  "https://twitter.com/"
 facebook_page: "https://www.facebook.com/"
-github_page: "https://github.com/"
+github_page:   "https://github.com/"
 
 # アプリケーション名
 app_name: "YOUR_APP_NAME"
