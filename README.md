@@ -65,6 +65,56 @@ rails g minimum:omniauth:scaffold
 rake db:migrate
 ```
 
+### キー作成
+
+* Twitter
+  * [Create an application | Twitter Developers](https://dev.twitter.com/apps/new)
+  * ※必須マークが無いが 「Callback URL」も入力必要
+
+* Facebook
+  * [Facebook Developers](https://developers.facebook.com/apps)
+  * ※「新しいアプリを作成」作成後「Facebookでログインするウェブサイト」に「http://0.0.0.0:3000/」を入力
+
+* GitHub
+  * [New OAuth Application](https://github.com/settings/applications/new)
+  * ※Main URL／Callback URL：「http://0.0.0.0:3000/」
+
+config/settings.local.yml
+
+```yaml
+# Twitter OAuth Local Setting
+twitter_key:    "Consumer key"
+twitter_secret: "Consumer secret"
+
+# Facebook OAuth Setting
+facebook_app_id:     "アプリID / APIキー"
+facebook_app_secret: "アプリのシークレットキー"
+
+# GitHub OAuth Setting
+github_client_id: "Client ID"
+github_secret:    "Client Secret"
+```
+
+## Heroku環境変数設定
+
+* Twitter
+
+```
+heroku config:set TWITTER_KEY=xxxxxxxxxx TWITTER_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+* Facebook
+
+```
+heroku config:set FACEBOOK_APP_ID=xxxxxxxxxx FACEBOOK_APP_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+* GitHub
+
+```
+heroku config:set GITHUB_CLIENT_ID=xxxxxxxxxx GITHUB_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
 ## Contributing
 
 1. Fork it
