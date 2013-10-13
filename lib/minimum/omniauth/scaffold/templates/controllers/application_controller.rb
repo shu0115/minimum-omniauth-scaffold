@@ -21,12 +21,12 @@
 
   # ログインユーザ
   def current_user
-    @current_user ||= User.where( id: session[:user_id] ).first
+    @current_user ||= User.find_by(id: session[:user_id])
   end
   helper_method :current_user
 
   # ユーザ登録チェック
   def signed_in?
-    User.where( id: session[:user_id] ).exists?
+    User.where(id: session[:user_id]).exists?
   end
   helper_method :signed_in?
