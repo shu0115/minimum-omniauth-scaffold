@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   # ログイン
   def callback
     auth = request.env["omniauth.auth"]
-    authentication, user = Authentication.find_by(provider: auth["provider"], uid: auth["uid"]) || Authentication.create_with_omniauth(auth)
+    authentication = Authentication.find_by(provider: auth["provider"], uid: auth["uid"]) || Authentication.create_with_omniauth(auth)
     authentication.auth_update(auth)
 
     # ユーザ作成

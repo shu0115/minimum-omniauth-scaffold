@@ -1,7 +1,5 @@
 require "minimum/omniauth/scaffold/version"
-
 require 'rails/generators'
-
 require 'rails_config'
 require 'omniauth-twitter'
 require 'omniauth-facebook'

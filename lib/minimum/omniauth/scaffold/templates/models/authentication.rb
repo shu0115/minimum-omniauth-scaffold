@@ -19,15 +19,13 @@ class Authentication < ActiveRecord::Base
     gender   = auth["extra"]["raw_info"]["gender"] rescue nil
     location = (auth["info"]["location"].presence || auth["extra"]["raw_info"]["location"]) rescue nil
 
-    # if self.name != auth["info"]["name"] or self.nickname != auth["info"]["nickname"] or self.image != image_path or self.email != auth["info"]["email"] or self.image != image_path
-      self.name     = auth["info"]["name"]     if auth["info"]["name"].present?
-      self.nickname = auth["info"]["nickname"] if auth["info"]["nickname"].present?
-      self.image    = image_path               if image_path.present?
-      self.email    = auth["info"]["email"]    if auth["info"]["email"].present?
-      self.gender   = gender                   if gender.present?
-      self.location = location                 if location.present?
-      self.save!
-    # end
+    self.name     = auth["info"]["name"]     if auth["info"]["name"].present?
+    self.nickname = auth["info"]["nickname"] if auth["info"]["nickname"].present?
+    self.image    = image_path               if image_path.present?
+    self.email    = auth["info"]["email"]    if auth["info"]["email"].present?
+    self.gender   = gender                   if gender.present?
+    self.location = location                 if location.present?
+    self.save!
   rescue => e
     puts "[ ---------- e ---------- ]" ; e.tapp ;
     return nil
@@ -60,17 +58,6 @@ class Authentication < ActiveRecord::Base
       authentication.location = auth["extra"]["raw_info"]["location"] if authentication.location.blank?
     end
 
-    # # ユーザ作成
-    # user = User.new
-    # user.name = authentication.nickname.presence || authentication.name
-    # user.image = authentication.image if authentication.image.present?
-    # user.email = authentication.email if authentication.email.present?
-    # user.last_login_provider = authentication.provider if authentication.provider.present?
-    # user.last_login_at = Time.now
-
-    # # データ保存
-    # user.save!
-    # authentication.user_id = user.id
     authentication.save!
 
     return authentication

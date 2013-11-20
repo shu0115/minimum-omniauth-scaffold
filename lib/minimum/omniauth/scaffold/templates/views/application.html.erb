@@ -3,8 +3,8 @@
 <% if signed_in? %>
   <%# ログイン済み %>
   <%= render partial: '/layouts/user_icon', locals: { user: current_user, size: "18x18", klass: "margin_minus2" } %>
-  <%= link_to( "Top", root_path ) %>
-  <%= link_to( "Logout", logout_path ) %>
+  <%= link_to "Top", root_path %>
+  <%= link_to "Logout", logout_path %>
 <% else %>
   <%# 未ログイン %>
   Login:
@@ -14,8 +14,8 @@
 <% end %>
 
 <%# 通知／エラーメッセージ %>
-<%= simple_format( flash[:notice], style: "color: green;" ) if flash[:notice].present? %>
-<%= simple_format( flash[:alert], style: "color: red;" ) if flash[:alert].present? %>
+<%= simple_format(flash[:notice], style: "color: green;") if flash[:notice].present? %>
+<%= simple_format(flash[:alert], style: "color: red;") if flash[:alert].present? %>
 
 <%= yield %>
 
