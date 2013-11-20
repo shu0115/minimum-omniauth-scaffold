@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :authentications
+
+=begin
   # auth情報更新
   def auth_update( auth )
     if auth["provider"] == "facebook"
@@ -17,9 +20,11 @@ class User < ActiveRecord::Base
       self.save!
     end
   end
+=end
 
   private
 
+=begin
   # auth情報登録
   def self.create_with_omniauth( auth )
     user = User.new
@@ -48,4 +53,5 @@ class User < ActiveRecord::Base
 
     return user
   end
+=end
 end

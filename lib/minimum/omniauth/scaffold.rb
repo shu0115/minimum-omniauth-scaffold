@@ -63,8 +63,9 @@ module Minimum
         copy_file( "#{@@template_path}/locales/ja.yml", "config/locales/ja.yml" )
         copy_file( "#{@@template_path}/locales/translation_ja.yml", "config/locales/translation_ja.yml" )
 
-        # ----- create_users.rb ----- #
+        # ----- migration ----- #
         copy_file( "#{@@template_path}/migrate/create_users.rb", "db/migrate/20000101000000_create_users.rb" )
+        copy_file( "#{@@template_path}/migrate/create_authentications.rb", "db/migrate/20000102000000_create_authentications.rb" )
 
         # ----- models ----- #
         copy_file( "#{@@template_path}/models/user.rb", "app/models/user.rb" )

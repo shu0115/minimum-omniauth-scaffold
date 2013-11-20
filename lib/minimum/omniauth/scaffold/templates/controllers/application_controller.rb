@@ -25,7 +25,7 @@
   end
   helper_method :current_user
 
-  # ユーザ登録チェック
+  # ログイン／ユーザ登録済みチェック
   def signed_in?
     User.where(id: session[:user_id]).exists?
   end
