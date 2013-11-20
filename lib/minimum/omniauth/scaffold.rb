@@ -69,6 +69,7 @@ module Minimum
 
         # ----- models ----- #
         copy_file( "#{@@template_path}/models/user.rb", "app/models/user.rb" )
+        copy_file( "#{@@template_path}/models/authentication.rb", "app/models/authentication.rb" )
 
         # ----- controllers ----- #
         content = File.read( "#{@@template_path}/controllers/application_controller.rb", encoding: Encoding::UTF_8 )
