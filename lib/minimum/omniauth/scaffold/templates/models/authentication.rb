@@ -7,10 +7,13 @@ class Authentication < ActiveRecord::Base
 
   # auth情報更新
   def auth_update(auth)
-    if auth["provider"] == "facebook"
+    case auth["provider"]
+    when "facebook"
       image_path = "https://graph.facebook.com/#{auth['info']['nickname'].presence || auth["uid"]}/picture?width=200&height=200"
-    elsif auth["provider"] == "twitter"
+    when "twitter"
       image_path = auth["info"]["image"].to_s.gsub('_normal', '') rescue nil
+    when "github"
+      image_path = "#{auth['info']['image']}&size=200" rescue nil
     end
 
     gender   = auth["extra"]["raw_info"]["gender"] rescue nil
@@ -57,17 +60,17 @@ class Authentication < ActiveRecord::Base
       authentication.location = auth["extra"]["raw_info"]["location"] if authentication.location.blank?
     end
 
-    # ユーザ作成
-    user = User.new
-    user.name = authentication.nickname.presence || authentication.name
-    user.image = authentication.image if authentication.image.present?
-    user.email = authentication.email if authentication.email.present?
-    user.last_login_provider = authentication.provider if authentication.provider.present?
-    user.last_login_at = Time.now
+    # # ユーザ作成
+    # user = User.new
+    # user.name = authentication.nickname.presence || authentication.name
+    # user.image = authentication.image if authentication.image.present?
+    # user.email = authentication.email if authentication.email.present?
+    # user.last_login_provider = authentication.provider if authentication.provider.present?
+    # user.last_login_at = Time.now
 
-    # データ保存
-    user.save!
-    authentication.user_id = user.id
+    # # データ保存
+    # user.save!
+    # authentication.user_id = user.id
     authentication.save!
 
     return authentication

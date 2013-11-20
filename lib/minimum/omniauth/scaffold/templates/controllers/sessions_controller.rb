@@ -3,16 +3,15 @@ class SessionsController < ApplicationController
 
   # ログイン
   def callback
-    # auth = request.env["omniauth.auth"]
-    # user = User.where( provider: auth["provider"], uid: auth["uid"] ).first || User.create_with_omniauth( auth )
-    # user.auth_update( auth )
-
     auth = request.env["omniauth.auth"]
     authentication, user = Authentication.find_by(provider: auth["provider"], uid: auth["uid"]) || Authentication.create_with_omniauth(auth)
     authentication.auth_update(auth)
 
-    session[:user_id] = authentication.user_id
-    flash[:notice] = "ログインしました。"
+    # ユーザ作成
+    user = User.create_with_auth(authentication)
+
+    session[:user_id] = user.id
+    flash[:notice]    = "ログインしました。"
 
     # 保管URLへリダイレクト
     unless session[:request_url].blank?
