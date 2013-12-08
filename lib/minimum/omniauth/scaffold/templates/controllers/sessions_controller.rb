@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
     authentication = Authentication.find_by(provider: auth["provider"], uid: auth["uid"]) || Authentication.create_with_omniauth(auth)
     authentication.auth_update(auth)
 
-    # ユーザ作成
-    user = User.create_with_auth(authentication)
+    # ユーザ取得or作成
+    user = User.find_by(id: authentication.user_id) || User.create_with_auth(authentication)
 
     session[:user_id] = user.id
     flash[:notice]    = "ログインしました。"
