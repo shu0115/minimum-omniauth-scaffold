@@ -1,6 +1,6 @@
 # Minimum::Omniauth::Scaffold
 
-For Ruby2.0 and Rails4.0.0.beta1
+For Ruby2.0+ and Rails4.0.0+
 
 ## Installation
 
