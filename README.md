@@ -65,7 +65,7 @@ rails g minimum:omniauth:scaffold
 rake db:migrate
 ```
 
-### キー作成
+### 開発用キー作成
 
 * Twitter
   * [Create an application | Twitter Developers](https://dev.twitter.com/apps/new)
@@ -96,6 +96,8 @@ github_secret:    "Client Secret"
 ```
 
 ## Heroku環境変数設定
+
+※Production用キーを別途作成
 
 * Twitter
 
