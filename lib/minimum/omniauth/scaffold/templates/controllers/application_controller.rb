@@ -1,5 +1,5 @@
-  before_filter :authenticate           # ログイン認証
-  before_filter :reset_session_expires  # セッション有効期限延長
+  before_action :authenticate           # ログイン認証
+  before_action :reset_session_expires  # セッション有効期限延長
 
   private
 
