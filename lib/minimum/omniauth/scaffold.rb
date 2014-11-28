@@ -32,8 +32,8 @@ module Minimum
         content += "  get \"/auth/failure\"            => \"sessions#failure\"\n"
         content += "  get \"/logout\"                  => \"sessions#destroy\", as: :logout\n"
         content += "\n"
-        insert_into_file( "config/routes.rb", content.force_encoding('ASCII-8BIT'), after: "Application.routes.draw do\n" )
-        insert_into_file( "config/routes.rb", "  root to: 'top#index'\n", after: "Application.routes.draw do\n" )
+        insert_into_file( "config/routes.rb", content.force_encoding('ASCII-8BIT'), after: "Rails.application.routes.draw do\n" )
+        insert_into_file( "config/routes.rb", "  root to: 'top#index'\n", after: "Rails.application.routes.draw do\n" )
 
         # ----- application.rb ----- #
         content = "    config.time_zone = 'Tokyo'\n"
