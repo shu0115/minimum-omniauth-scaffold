@@ -1,0 +1,2 @@
+- if user.present?
+  = link_to_unless(user.name.blank?, image_tag(user.image, size: size, class: klass), "#{Settings[user.last_login_provider + '_page']}#{user.name}", target: "_blank", title: user.name, rel: "tooltip", "data-original-title" => user.name)

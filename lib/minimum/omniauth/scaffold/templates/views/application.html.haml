@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    %title= Settings.app_name
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body{ 'data-no-turbolink' => true }
+    = link_to Settings.app_name, :root
+
+    - if signed_in?
+      = render partial: '/layouts/user_icon', locals: { user: current_user, size: "18x18", klass: "margin_minus2" }
+      = link_to "Top",    root_path
+      = link_to "Logout", logout_path
+    - else
+      Login:
+      = link_to 'Twitter',  '/auth/twitter'
+      = link_to 'Facebook', '/auth/facebook'
+      = link_to 'GitHub',   '/auth/github'
+
+    = simple_format(flash[:notice], style: "color: green;") if flash[:notice].present?
+    = simple_format(flash[:alert], style: "color: red;")    if flash[:alert].present?
+
+    = yield
+
+    %br/
+    %br/
+
+    %center
+      Developed by
+      = succeed "," do
+        %a{ href: "https://twitter.com/#{Settings.programmer_twitter_id}/", target: '_blank' }
+          = "@#{Settings.programmer_twitter_id}"
+      Designed by
+      = succeed "," do
+        %a{ href: "https://twitter.com/#{Settings.designer_twitter_id}/", target: '_blank' }
+          = "@#{Settings.designer_twitter_id}"
+      Licence by
+      %a{ href: 'https://creativecommons.org/licenses/by-nc-sa/2.1/jp/', target: '_blank' }
+        CC BY-NC-SA 2.1
