@@ -15,7 +15,7 @@ module Minimum
       def generate_scaffold
         app_name = Rails.application.class.name.split('::').first
 
-        copy_file 'app/views/layouts/application.html.erb', 'app/views/layouts/_____application.html.erb'
+        # copy_file 'app/views/layouts/application.html.erb', 'app/views/layouts/_____application.html.erb'
         remove_file 'app/views/layouts/application.html.erb'
         copy_file "#{@@template_path}/views/application.html.haml", 'app/views/layouts/application.html.haml'
         copy_file "#{@@template_path}/views/_user_icon.html.erb", "app/views/layouts/_user_icon.html.erb"
