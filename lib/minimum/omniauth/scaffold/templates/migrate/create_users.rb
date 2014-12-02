@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean   :admin_flag, default: false
       t.string    :last_login_provider
       t.timestamp :last_login_at
+      t.text      :user_agent
 
       t.timestamps
     end

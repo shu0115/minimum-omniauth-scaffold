@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   private
 
   # ユーザ作成
-  def self.create_with_auth(authentication)
+  def self.create_with_auth(authentication, request)
     # ユーザ作成
     user = User.new
     user.name                = (authentication.nickname.presence || authentication.name)
@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
     user.email               = authentication.email    if authentication.email.present?
     user.last_login_provider = authentication.provider if authentication.provider.present?
     user.last_login_at       = Time.now
+    user.user_agent          = request.env['HTTP_USER_AGENT'] rescue 'error'
 
     # データ保存
     user.save!

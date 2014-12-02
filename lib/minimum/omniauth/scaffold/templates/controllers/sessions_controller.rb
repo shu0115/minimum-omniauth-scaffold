@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     authentication.auth_update(auth)
 
     # ユーザ取得or作成
-    user = User.find_by(id: authentication.user_id) || User.create_with_auth(authentication)
+    user = User.find_by(id: authentication.user_id) || User.create_with_auth(authentication, request)
 
     session[:user_id] = user.id
     flash[:notice]    = "ログインしました。"
