@@ -1,6 +1,6 @@
 require "minimum/omniauth/scaffold/version"
 require 'rails/generators'
-require 'rails_config'
+require 'config'
 require 'omniauth-twitter'
 require 'omniauth-facebook'
 require 'omniauth-github'
@@ -16,7 +16,7 @@ module Minimum
         app_name = Rails.application.class.name.split('::').first
 
         ## rails_config
-        copy_file "#{@@template_path}/rails_config/rails_config.rb", "config/initializers/rails_config.rb"
+        copy_file "#{@@template_path}/rails_config/config.rb", "config/initializers/config.rb"
         copy_file "#{@@template_path}/rails_config/settings.yml", "config/settings.yml"
         copy_file "#{@@template_path}/rails_config/settings.local.yml", "config/settings.local.yml"
         copy_file "#{@@template_path}/rails_config/development.yml", "config/settings/development.yml"
