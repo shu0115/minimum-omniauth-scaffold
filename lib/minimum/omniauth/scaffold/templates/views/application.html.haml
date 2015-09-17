@@ -28,13 +28,8 @@
 
     %center
       Developed by
-      = succeed "," do
-        %a{ href: "https://twitter.com/#{Settings.programmer_twitter_id}/", target: '_blank' }
-          = "@#{Settings.programmer_twitter_id}"
-      Designed by
-      = succeed "," do
-        %a{ href: "https://twitter.com/#{Settings.designer_twitter_id}/", target: '_blank' }
-          = "@#{Settings.designer_twitter_id}"
-      Licence by
-      %a{ href: 'https://creativecommons.org/licenses/by-nc-sa/2.1/jp/', target: '_blank' }
-        CC BY-NC-SA 2.1
+      = link_to "@#{Settings.programmer_twitter_id}", "https://twitter.com/#{Settings.programmer_twitter_id}/", target: '_blank'
+
+      -# Licence by
+      -# %a{ href: 'https://creativecommons.org/licenses/by-nc-sa/2.1/jp/', target: '_blank' }
+      -#   CC BY-NC-SA 2.1
