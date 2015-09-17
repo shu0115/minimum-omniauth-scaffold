@@ -2,10 +2,10 @@
 %html
   %head
     %title= Settings.app_name
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body{ 'data-no-turbolink' => true }
+  %body
     = link_to Settings.app_name, :root
 
     - if signed_in?
