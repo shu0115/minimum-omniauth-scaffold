@@ -6,10 +6,8 @@
   # ログイン認証
   def authenticate
     unless signed_in?
-      # リクエストURL保管
       session[:request_url] = request.url
 
-      # ルートヘリダイレクト
       redirect_to :root and return
     end
   end

@@ -1,5 +1,5 @@
 class Authentication < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, optional: true
 
   # バリデーション
   validates :provider, presence: true
@@ -26,40 +26,36 @@ class Authentication < ActiveRecord::Base
     self.gender   = gender                   if gender.present?
     self.location = location                 if location.present?
     self.save!
-  rescue => e
-    puts "[ ---------- e ---------- ]" ; e.tapp ;
-    return nil
   end
 
-  private
-
-  # auth情報登録／ユーザ作成
-  def self.create_with_omniauth(auth)
+  class << self
     # auth情報登録
-    authentication = Authentication.new
-    authentication.provider = auth["provider"]
-    authentication.uid      = auth["uid"]
+    def create_with_omniauth(auth)
+      authentication = Authentication.new
+      authentication.provider = auth["provider"]
+      authentication.uid      = auth["uid"]
 
-    if auth["info"].present?
-      authentication.name     = auth["info"]["name"]
-      authentication.nickname = auth["info"]["nickname"]
-      authentication.image    = auth["info"]["image"]
-      authentication.email    = auth["info"]["email"]
-      authentication.location = auth["info"]["location"]
+      if auth["info"].present?
+        authentication.name     = auth["info"]["name"]
+        authentication.nickname = auth["info"]["nickname"]
+        authentication.image    = auth["info"]["image"]
+        authentication.email    = auth["info"]["email"]
+        authentication.location = auth["info"]["location"]
+      end
+
+      if auth["credentials"].present?
+        authentication.token  = auth['credentials']['token']
+        authentication.secret = auth['credentials']['secret']
+      end
+
+      if auth["extra"].present? and auth["extra"]["raw_info"].present?
+        authentication.gender   = auth["extra"]["raw_info"]["gender"]
+        authentication.location = auth["extra"]["raw_info"]["location"] if authentication.location.blank?
+      end
+
+      authentication.save!
+
+      return authentication
     end
-
-    if auth["credentials"].present?
-      authentication.token  = auth['credentials']['token']
-      authentication.secret = auth['credentials']['secret']
-    end
-
-    if auth["extra"].present? and auth["extra"]["raw_info"].present?
-      authentication.gender   = auth["extra"]["raw_info"]["gender"]
-      authentication.location = auth["extra"]["raw_info"]["location"] if authentication.location.blank?
-    end
-
-    authentication.save!
-
-    return authentication
   end
 end
