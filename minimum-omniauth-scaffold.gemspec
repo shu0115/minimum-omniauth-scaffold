@@ -25,7 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "omniauth-twitter"
   spec.add_dependency "omniauth-facebook"
   spec.add_dependency "omniauth-github"
-  spec.add_dependency "tapp"
-  spec.add_dependency "awesome_print"
+  spec.add_dependency "tapp-awesome_print"
 end
-
