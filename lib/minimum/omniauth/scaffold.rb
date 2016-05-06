@@ -11,6 +11,7 @@ module Minimum
   module Omniauth
     class ScaffoldGenerator < Rails::Generators::Base
       @@template_path = source_root File.expand_path("../scaffold/templates", __FILE__)
+      @@current_path  = Dir.pwd
 
       def generate_scaffold
         app_name = Rails.application.class.name.split('::').first
@@ -58,8 +59,13 @@ module Minimum
         # gsub_file "app/views/layouts/application.html.erb", /(<%= yield %>)+/, content.force_encoding('ASCII-8BIT')
         # gsub_file "app/views/layouts/application.html.erb", Regexp.new("<title>#{app_name}</title>"), "<title><%= Settings.app_name %></title>"
 
-        copy_file 'app/views/layouts/application.html.erb', 'app/views/layouts/application_BACKUP.html.erb'
-        remove_file 'app/views/layouts/application.html.erb'
+        begin
+          copy_file "#{@@current_path}/app/views/layouts/application.html.erb", 'app/views/layouts/application_BACKUP.html.erb'
+          remove_file "#{@@current_path}/app/views/layouts/application.html.erb"
+        rescue => e
+          e.tapp
+        end
+
         copy_file "#{@@template_path}/views/application.html.haml", 'app/views/layouts/application.html.haml'
         copy_file "#{@@template_path}/views/_user_icon.html.haml", "app/views/layouts/_user_icon.html.haml"
         copy_file "#{@@template_path}/views/index.html.haml", "app/views/top/index.html.haml"
@@ -68,8 +74,12 @@ module Minimum
         copy_file "#{@@template_path}/stylesheets/scaffolds.css.scss", "app/assets/stylesheets/scaffolds.css.scss"
 
         # README
-        copy_file 'README.rdoc', 'README_BACKUP.rdoc'
-        remove_file 'README.rdoc'
+        begin
+          copy_file "#{@@current_path}/README.md", 'README_BACKUP.md'
+          remove_file "#{@@current_path}/README.md"
+        rescue => e
+          e.tapp
+        end
         copy_file "#{@@template_path}/README.md", "README.md"
 
         # .gitignore
