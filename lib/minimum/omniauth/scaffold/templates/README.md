@@ -39,7 +39,7 @@ CAPTCHA入力後「Create your Twitter application」を押下
 
 ### ローカル用Twitterキー設定
 
-Create: config/settings.local.yml
+- Create: config/settings.local.yml
 
 ```ruby
 # Twitter OAuth Local Setting
@@ -51,25 +51,25 @@ twitter_secret: "YOUR_CONSUMER_SECRET"
 
 ### Rails起動
 
-Gemインストール
+- Gemインストール
 
 ```
 bundle install --without production
 ```
 
-ローカルDB作成
+- ローカルDB作成
 
 ```
 bundle exec rake db:migrate
 ```
 
-ローカルサーバ起動
+- ローカルサーバ起動
 
 ```
 bundle exec rails s
 ```
 
-ページアクセス
+- ページアクセス
 
 ```
 http://localhost:3000/
