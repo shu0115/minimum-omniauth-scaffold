@@ -60,7 +60,7 @@ bundle install --without production
 ローカルDB作成
 
 ```
-rake db:setup
+bundle exec rake db:migrate
 ```
 
 ローカルサーバ起動
@@ -72,7 +72,7 @@ bundle exec rails s
 ページアクセス
 
 ```
-http://0.0.0.0:3000/
+http://localhost:3000/
 ```
 
 ## Copyright
