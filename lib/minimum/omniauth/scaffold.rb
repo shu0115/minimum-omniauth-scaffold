@@ -29,9 +29,9 @@ module Minimum
 
         # routes.rb
         content = "\n  # For OmniAuth\n"
-        content += "  get \"/auth/:provider/callback\" => \"sessions#callback\"\n"
-        content += "  get \"/auth/failure\"            => \"sessions#failure\"\n"
-        content += "  get \"/logout\"                  => \"sessions#destroy\", as: :logout\n"
+        content += "  get '/auth/:provider/callback', to: 'sessions#callback'\n"
+        content += "  get '/auth/failure',            to: 'sessions#failure'\n"
+        content += "  get '/logout',                  to: 'sessions#destroy', as: :logout\n"
         content += "\n"
         insert_into_file "config/routes.rb", content.force_encoding('ASCII-8BIT'), after: "Rails.application.routes.draw do\n"
         insert_into_file "config/routes.rb", "  root to: 'top#index'\n", after: "Rails.application.routes.draw do\n"
