@@ -41,8 +41,9 @@ module Minimum
         copy_file "#{@@template_path}/locales/translation_ja.yml", "config/locales/translation_ja.yml"
 
         # migration
-        copy_file "#{@@template_path}/migrate/create_users.rb", "db/migrate/20000101000000_create_users.rb"
-        copy_file "#{@@template_path}/migrate/create_authentications.rb", "db/migrate/20000102000000_create_authentications.rb"
+        # copy_file "#{@@template_path}/migrate/create_users.rb", "db/migrate/20000101000000_create_users.rb"
+        # copy_file "#{@@template_path}/migrate/create_authentications.rb", "db/migrate/20000102000000_create_authentications.rb"
+        copy_file "#{@@template_path}/migrate/Schemafile", "Schemafile"
 
         # models
         copy_file "#{@@template_path}/models/user.rb", "app/models/user.rb"
@@ -73,14 +74,14 @@ module Minimum
         # assets
         copy_file "#{@@template_path}/stylesheets/scaffolds.css.scss", "app/assets/stylesheets/scaffolds.css.scss"
 
-        # README
-        begin
-          copy_file "#{@@current_path}/README.md", 'README_BACKUP.md'
-          remove_file "#{@@current_path}/README.md"
-        rescue => e
-          e.tapp
-        end
-        copy_file "#{@@template_path}/README.md", "README.md"
+        # # README
+        # begin
+        #   copy_file "#{@@current_path}/README.md", 'README_BACKUP.md'
+        #   remove_file "#{@@current_path}/README.md"
+        # rescue => e
+        #   e.tapp
+        # end
+        # copy_file "#{@@template_path}/README.md", "README.md"
 
         # .gitignore
         content = "\n# Add\n"

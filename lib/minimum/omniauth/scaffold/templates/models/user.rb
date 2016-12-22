@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   has_many :authentications
 
   class << self
-    # ユーザ作成
     def create_with_auth(authentication, request)
       user = User.new
       user.name                = (authentication.nickname.presence || authentication.name)
