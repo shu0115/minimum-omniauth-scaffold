@@ -1,4 +1,4 @@
-class Authentication < ActiveRecord::Base
+class Authentication < ApplicationRecord
   belongs_to :user, optional: true
 
   validates :provider, presence: true
