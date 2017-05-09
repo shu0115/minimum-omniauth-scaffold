@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   has_many :authentications
 
+  def https_image
+    self.image.gsub('http://', 'https://')
+  end
+
   class << self
     def create_with_auth(authentication, request)
       user = User.new
