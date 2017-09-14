@@ -11,6 +11,10 @@
     end
   end
 
+  def reset_session_expires
+    request.session_options[:expire_after] = 2.weeks
+  end
+
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
