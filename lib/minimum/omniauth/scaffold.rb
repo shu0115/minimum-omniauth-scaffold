@@ -50,8 +50,9 @@ module Minimum
 
         # controllers
         content = File.read("#{@@template_path}/controllers/application_controller.rb", encoding: Encoding::UTF_8)
-        # insert_into_file "app/controllers/application_controller.rb", content.force_encoding('ASCII-8BIT'), after: "protect_from_forgery with: :exception\n"
-        insert_into_file "app/controllers/application_controller.rb", content.force_encoding('ASCII-8BIT'), after: "class ApplicationController < ActionController::Base\n"
+        insert_into_file "app/controllers/application_controller.rb", content.force_encoding('ASCII-8BIT'), after: "protect_from_forgery with: :exception\n"
+        # insert_into_file "app/controllers/application_controller.rb", content.force_encoding('ASCII-8BIT'), after: "class ApplicationController < ActionController::Base\n"
+
         copy_file "#{@@template_path}/controllers/sessions_controller.rb", "app/controllers/sessions_controller.rb"
         copy_file "#{@@template_path}/controllers/top_controller.rb", "app/controllers/top_controller.rb"
 
