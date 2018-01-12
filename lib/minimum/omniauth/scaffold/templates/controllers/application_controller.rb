@@ -1,5 +1,4 @@
   before_action :authenticate
-  before_action :reset_session_expires
 
   private
 
@@ -9,10 +8,6 @@
 
       redirect_to :root and return
     end
-  end
-
-  def reset_session_expires
-    request.session_options[:expire_after] = 2.weeks
   end
 
   def current_user
